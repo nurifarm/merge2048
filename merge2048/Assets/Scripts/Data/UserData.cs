@@ -6,4 +6,5 @@ public class UserData
 {
     public string userId;
     public string userName;
+    public string selectedSkinPath; // fruit
 }
