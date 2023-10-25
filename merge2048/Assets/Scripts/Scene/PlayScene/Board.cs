@@ -43,6 +43,7 @@ public class Board : MonoBehaviour
 
     public void Update() {
         if(State != GameState.Play) return;
+        // TODO: 클릭영역 확인후, 잘못된영역이면 return
         
         if(CurrentCircle == null) {
             CreateObject();

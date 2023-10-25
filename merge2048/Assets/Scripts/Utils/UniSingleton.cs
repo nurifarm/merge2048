@@ -39,6 +39,7 @@ public abstract class UniSingleton<T> : MonoBehaviour where T : MonoBehaviour
 							go = new GameObject(goName);
 						_instance = go.AddComponent<T>();
 					}
+					DontDestroyOnLoad(_instance);
 				}
 				return _instance;
 			}
