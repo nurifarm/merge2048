@@ -21,6 +21,8 @@ public class MergeCircle : MonoBehaviour
             index = value;
         }
     }
+    public float Radius => BaseRadius * Mathf.Pow(ScaleFactor, index+1);
+
     private int index;
     
     public void Create(int idx) {
@@ -33,7 +35,7 @@ public class MergeCircle : MonoBehaviour
         txt.text = $"{Mathf.Pow(2, idx+1)}";
         image.transform.localScale = Vector3.one * Mathf.Pow(ScaleFactor, idx+1);
         image.color = GetColor(idx);
-        col.radius = BaseRadius * Mathf.Pow(ScaleFactor, idx+1);
+        col.radius = Radius;
     }
 
     public void StartSimulate() {
@@ -50,6 +52,15 @@ public class MergeCircle : MonoBehaviour
         OnCollision.Invoke(this, other);
     }
 
+    public bool IsStable() {
+        return rig.angularVelocity <= 0.1f;
+    }
+
+    public void Abandon() {
+        // TODO: pooling
+        Destroy(gameObject);
+    }
+
     public Color GetColor(int index)
     {
         // index 값에 따라 R, G, B 값을 변경
@@ -59,4 +70,5 @@ public class MergeCircle : MonoBehaviour
 
         return new Color(r, g, b);
     }
+
 }

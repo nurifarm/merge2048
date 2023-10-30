@@ -60,3 +60,6 @@ crashlytics-build.properties
 
 # UserSettings
 /[Uu]ser[Ss]ettings/
+
+# Visual Studio Code
+.vscode
