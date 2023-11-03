@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
     
     [SerializeField] private Transform startLine;
     [SerializeField] private SpriteRenderer boardInner;
+    [SerializeField] private float lineY = 3.7f;
 
     public GameState State {
         get => state;
@@ -26,7 +27,6 @@ public class Board : MonoBehaviour
 
     public static Action<GameState> OnGameFinish;
 
-    private const float lineY = 3.7f;
     private MergeCircle CurrentCircle = null;
 
     private List<MergeCircle> circleList = new List<MergeCircle>();
