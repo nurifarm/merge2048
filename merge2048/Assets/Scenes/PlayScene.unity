@@ -726,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLine: {fileID: 1583453725}
   boardInner: {fileID: 1132054510}
+  lineY: 3.7
 --- !u!1 &1022751490
 GameObject:
   m_ObjectHideFlags: 0

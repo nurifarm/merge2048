@@ -17,4 +17,8 @@ public class SkinElement : MonoBehaviour
         var sprite = SpriteManager.Instance.GetSprite(spriteName);
         image.sprite = sprite;
     }
+
+    public void OnClickLoad() {
+        
+    }
 }

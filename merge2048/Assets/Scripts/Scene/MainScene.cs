@@ -9,6 +9,6 @@ public class MainScene : SceneBase
     }
 
     public void OnClickSkin() {
-        CSceneManager.Instance.Change("SkinScene");
+        CSceneManager.Instance.Change("SelectSkinSetScene");
     }
 }

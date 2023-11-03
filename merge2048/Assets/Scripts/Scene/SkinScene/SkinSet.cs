@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SkinSet : MonoBehaviour
 {
-    [SerializeField] private SkinElement[] skinElements;
+    [SerializeField] protected SkinElement[] skinElements;
     [SerializeField] private GameObject selected;
     [SerializeField] private Button selectButton;
 

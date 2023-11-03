@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 90584eed7de93834ca79b0db98aa783e
   - enabled: 1
-    path: Assets/Scenes/SkinScene.unity
+    path: Assets/Scenes/SelectSkinSetScene.unity
     guid: 840ef5b500f6ae54385966b631abb5c8
   - enabled: 1
     path: Assets/Scenes/PlayScene.unity
     guid: ed80e950f7060a84cac31856834aecbc
+  - enabled: 1
+    path: Assets/Scenes/CreateSkinSetScene.unity
+    guid: 4233061f6fcbfd1449a137a3cc478b72
   m_configObjects: {}
