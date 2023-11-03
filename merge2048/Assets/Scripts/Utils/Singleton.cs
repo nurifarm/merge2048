@@ -1,41 +1,29 @@
 ﻿using System;
 using System.Reflection;
 
-public class Singleton<T> where T : class
+public class Singleton<T> where T : class, new()
 {
-	private static object _syncobj = new object();
-	private static volatile T _instance = null;
+	 private static T instance;
 
-	public static T Instance
-	{
-		get
-		{
-			if (_instance == null)
-			{
-				CreateInstance();
-			}
-			return _instance;
-		}
-	}
+    protected Singleton()
+    {
+        // 기본 생성자를 외부에서 호출하지 못하도록 보호
+		Init();
+    }
 
-	private static void CreateInstance()
-	{
-		lock (_syncobj)
-		{
-			if (_instance == null)
-			{
-				Type t = typeof(T);
+    public static T Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new T();
+            }
+            return instance;
+        }
+    }
 
-				// Ensure there are no public constructors...  
-				ConstructorInfo[] ctors = t.GetConstructors();
-				if (ctors.Length > 0)
-				{
-					throw new InvalidOperationException(String.Format("{0} has at least one accesible ctor making it impossible to enforce singleton behaviour", t.Name));
-				}
+	protected virtual void Init() {
 
-				// Create an instance via the private constructor  
-				_instance = (T)Activator.CreateInstance(t, true);
-			}
-		}
 	}
 }

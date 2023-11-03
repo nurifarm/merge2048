@@ -13,11 +13,6 @@ public class PlayScene : SceneBase
 
     [SerializeField] private Board board;
 
-    // TODO: use SceneManager
-    public void Start() {
-        Enter(null);
-    }
-
     public override void Enter(object param)
 	{
         Board.OnGameFinish += OnGameFinish;

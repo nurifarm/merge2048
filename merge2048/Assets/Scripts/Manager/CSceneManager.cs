@@ -8,11 +8,16 @@ using System.Threading.Tasks;
 class CSceneManager : UniSingleton<CSceneManager>
 {
 	SceneBase CurrentScene;
-	string prevSceneName;
+	string prevSceneName = "";
 	bool isChanging;
 
 	public async UniTask ChangePrevScene(object param = null) {
-		if(prevSceneName == "") return;
+#if UNITY_EDITOR
+		if(string.IsNullOrEmpty(prevSceneName)) {
+			prevSceneName = "MainScene";
+		}
+
+#endif
 		Change(prevSceneName, param);
 	}
 	

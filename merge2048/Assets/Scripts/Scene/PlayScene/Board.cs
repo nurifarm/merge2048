@@ -18,6 +18,7 @@ public class Board : MonoBehaviour
     public GameState State {
         get => state;
         private set {
+            Debug.Log($"Set State {state} -> {value}");
             state = value;
         }
     }
@@ -60,6 +61,9 @@ public class Board : MonoBehaviour
     }
 
     public void Update() {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log($"{State} {IsStable()} {circleList.Count} {CurrentCircle == null} {PopupManager.Instance.IsAnyPopup} {IsTouchPointInsideBoard()} {startTouching}");
+        }
         if(State != GameState.Play) return;
         // TODO: 클릭영역 확인후, 잘못된영역이면 return
         
@@ -178,15 +182,19 @@ public class Board : MonoBehaviour
     }
 
     private void Drop() {
-        State = GameState.Falling;
 
         circleList.Add(CurrentCircle);
         CurrentCircle.StartSimulate();
         CurrentCircle = null;
+
+        State = GameState.Falling;
+
     }
 
     private void TouchGround() {
-        State = GameState.Play;
+        if(State == GameState.Falling) {
+            State = GameState.Play;
+        }
     }
 
     private void Merge(MergeCircle circle1, MergeCircle circle2) {

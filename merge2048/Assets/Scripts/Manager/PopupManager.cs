@@ -24,6 +24,7 @@ public class PopupManager : UniSingleton<PopupManager>
 			popups.Add(popupName, popupObject);
 		}
 
+		Debug.Log($"PopupShow {popupName}");
 		openPopups.Push(popups[popupName]);
 		openPopupCallbacks.Push(callback);
 		popups[popupName].gameObject.SetActive(true);
@@ -36,6 +37,7 @@ public class PopupManager : UniSingleton<PopupManager>
 		currentPopup.Hide();
 		var currentPopupCallback = openPopupCallbacks.Peek();
 		currentPopup.gameObject.SetActive(false);
+		Debug.Log($"PopupShow {currentPopup.name}");
 		openPopups.Pop();
 		openPopupCallbacks.Pop();
 		currentPopupCallback?.Invoke(param);

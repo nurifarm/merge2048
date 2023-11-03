@@ -13,11 +13,6 @@ public class GameDataManager : UniSingleton<GameDataManager>
     // User Data
     UserData userData;
 
-    // Monster Master Data
-    MonsterMasterData monsterMasterData;
-    
-    // Stage Master Data
-
 
     // Save
     public void Save()
@@ -30,7 +25,6 @@ public class GameDataManager : UniSingleton<GameDataManager>
     {
         await Task.Run(() => {
             // Monster Master Data
-            Debug.Log("Monster Master Data");
             // Stage Master Data
             Debug.Log("Stage Master Data");
         });
@@ -64,7 +58,7 @@ public class GameDataManager : UniSingleton<GameDataManager>
     public bool isLoadedData()
     {
         // TODO
-        if (userData == null || monsterMasterData == null)
+        if (userData == null)
             return false;
         
         return true;
