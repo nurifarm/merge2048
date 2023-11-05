@@ -12,10 +12,12 @@ public class PlayScene : SceneBase
     }
 
     [SerializeField] private Board board;
+    [SerializeField] private SkinElement nextElement;
 
     public override void Enter(object param)
 	{
         Board.OnGameFinish += OnGameFinish;
+        Board.OnChangeNextElement += OnChangeNextElement;
 		Debug.Log("Enter");
         GameStart();
 	}
@@ -24,7 +26,7 @@ public class PlayScene : SceneBase
     {
         base.Exit();
         Board.OnGameFinish -= OnGameFinish;
-
+        Board.OnChangeNextElement -= OnChangeNextElement;
     }
 
     private void GameStart() {
@@ -38,6 +40,10 @@ public class PlayScene : SceneBase
         } else if(gameState == Board.GameState.Fail) {
             PopupManager.Instance.Show("FailPopup", callback:OnClosePopup);
         }
+    }
+
+    private void OnChangeNextElement(int idx) {
+        nextElement.Init(idx, UserDataManager.Instance.SelectedSkinPath);
     }
 
     public void OnClosePopup(object param) {

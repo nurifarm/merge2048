@@ -26,6 +26,7 @@ public class Board : MonoBehaviour
     GameState state;
 
     public static Action<GameState> OnGameFinish;
+    public static Action<int> OnChangeNextElement;
 
     private MergeCircle CurrentCircle = null;
 
@@ -43,6 +44,7 @@ public class Board : MonoBehaviour
     }
 
     public void GameStart() {
+        nextIndex = UnityEngine.Random.Range(0, 5);
         State = GameState.Play;
     }
 
@@ -149,10 +151,15 @@ public class Board : MonoBehaviour
         // TODO: pooling
         var prefab = Resources.Load<MergeCircle>("MergeCircle");
         CurrentCircle = Instantiate(prefab, transform) as MergeCircle;
-        CurrentCircle.Create(UnityEngine.Random.Range(0, 5));
+        CurrentCircle.Create(nextIndex);
         CurrentCircle.transform.position = new Vector3(0f, startLine.position.y, 0f);
         CurrentCircle.OnCollisionFirst = TouchGround;
+
+        nextIndex = UnityEngine.Random.Range(0, 5);
+        OnChangeNextElement?.Invoke(nextIndex);
     }
+
+    private int nextIndex = -1;
 
     private void MoveObject() {
         Vector3 inputPosition = Input.mousePosition;
