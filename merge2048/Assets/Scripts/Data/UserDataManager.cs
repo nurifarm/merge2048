@@ -11,6 +11,7 @@ public class UserDataManager : Singleton<UserDataManager>
     // User Data
     UserData userData;
     public string SelectedSkinPath => userData?.selectedSkinPath;
+    public List<int> CustomSkins => userData?.customSkins;
     
 
 	protected override void Init() {
@@ -45,6 +46,11 @@ public class UserDataManager : Singleton<UserDataManager>
 
     public void SetSkin(string selectedSkinPath) {
         userData.selectedSkinPath = selectedSkinPath;
+        Save();
+    }
+
+    public void AddCustomSkin(int customSkinPath) {
+        userData.customSkins.Add(customSkinPath);
         Save();
     }
 }

@@ -32,15 +32,25 @@ public class SelectSkinSetScene : SceneBase
     }
 
     public override void Enter(object param) {
+        // default skinset
         for(int i=0; i<this.skinList.Count;i++){
-            var skinSet = Instantiate(skinSetPrefab, skinListRoot) as SkinSet;
-            skinSet.Init(this.skinList[i]);
-            skinSets.Add(skinSet);
+            CreateSkinSet(this.skinList[i]);
+        }
+        // user custom skinset
+        foreach(var skinSetPath in UserDataManager.Instance.CustomSkins) {
+            CreateSkinSet($"Custom/{skinSetPath}");
         }
 
         skinSetPrefab.gameObject.SetActive(false);
         moreButton.transform.SetAsLastSibling();
+
+        void CreateSkinSet(string filepath) {
+            var skinSet = Instantiate(skinSetPrefab, skinListRoot) as SkinSet;
+            skinSet.Init(filepath);
+            skinSets.Add(skinSet);
+        }
     }
+
 
     public void OnClickCreateSkinSet() {
         CSceneManager.Instance.Change("CreateSkinSetScene");

@@ -11,4 +11,8 @@ public class CreateSkinSetScene : SceneBase
         base.Enter(param);
         skinSet.Init();
     }
+
+    public void OnClickSave() {
+        skinSet.Save();
+    }
 }

@@ -33,16 +33,20 @@ public class MergeCircle : MonoBehaviour
     public void UpdateIndex(int idx) {
         index = idx;
         txt.text = "";// $"{Mathf.Pow(2, idx+1)}";
+
         var spriteName = $"Skins/{UserDataManager.Instance.SelectedSkinPath}/{idx+1}";
-        image.sprite = SpriteManager.Instance.GetSprite(spriteName);
+        image.sprite = GameDataManager.Instance.GetCircleSprite(UserDataManager.Instance.SelectedSkinPath, idx);// SpriteManager.Instance.GetSprite(spriteName);
         SetSpriteSize();
+        if(UserDataManager.Instance.SelectedSkinPath.Contains("Custom")) {
+            image.transform.localScale *= 100;
+        }
        // image.transform.localScale *= Mathf.Pow(ScaleFactor, idx+1);
         col.radius = Radius;
     }
 
     private void SetSpriteSize() {
          // 스프라이트의 원본 크기를 가져옵니다.
-        float originalWidth = image.sprite.bounds.size.x;
+        float originalWidth = GameDataManager.SpriteSize;// image.sprite.bounds.size.x;
 
         // 원하는 너비와 원본 가로 크기 비교
         float scaleRatio = (Radius*2) / (originalWidth);

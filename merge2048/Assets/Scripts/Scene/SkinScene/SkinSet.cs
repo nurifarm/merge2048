@@ -19,6 +19,7 @@ public class SkinSet : MonoBehaviour
 
         gameObject.SetActive(true);
         
+        Debug.Log($"{path}");
         for(int i = 0; i < skinElements.Length; ++i) {
             skinElements[i].Init(i, path);
         }
